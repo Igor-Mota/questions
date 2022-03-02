@@ -1,14 +1,14 @@
-import Nav from './components/shared/nav'
-import SideBar from './components/shared/sideBar'
+import Layout from './layout'
+import Routes from './routes/routes'
 
 function App() {
-
   return (
-    <div id="main-wrapper" className="show">
-      <Nav />
-      <SideBar />
-    </div>
+    <Layout>
+      <Routes.AppRoutes />
+    </Layout>
   )
 }
 
 export default App
+
+
