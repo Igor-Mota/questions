@@ -56,3 +56,6 @@
     width: 250px;
     height: 65px;
 }
+.nice-select{
+    width: 250px !important; 
+}
