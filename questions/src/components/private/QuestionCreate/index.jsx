@@ -23,7 +23,7 @@ const QuestionCreate = function () {
         <div className="create-question-header">
           <div className="question-text">
             <textarea
-              onChange={setEnunciate}
+              onChange={(e) => setEnunciate(e.target.value)}
               className="form-control"
               cols="50"
               id="comment"
@@ -38,7 +38,9 @@ const QuestionCreate = function () {
               <FaFileImage size={24} color="gray" />
             </button>
             <input
-              onChange={setImage}
+              onChange={(e) => {
+                setImage(e.target.files[0]);
+              }}
               type="file"
               name="image-user"
               id="image-user"
