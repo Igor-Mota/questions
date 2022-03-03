@@ -2,7 +2,9 @@
   "typescript": true,
   "commands": [
     "./commands",
-    "@adonisjs/core/build/commands/index.js"
+    "@adonisjs/core/build/commands/index.js",
+    "@adonisjs/repl/build/commands",
+    "@adonisjs/lucid/build/commands"
   ],
   "exceptionHandlerNamespace": "App/Exceptions/Handler",
   "aliases": {
@@ -18,13 +20,11 @@
   "providers": [
     "./providers/AppProvider",
     "@adonisjs/core",
+    "@adonisjs/lucid",
     "@adonisjs/auth",
-    "./providers/UserProvider"
+    "@adonisjs/drive-s3"
   ],
-  "metaFiles": [
-    {
-      "pattern": "public/**",
-      "reloadServer": false
-    }
+  "aceProviders": [
+    "@adonisjs/repl"
   ]
 }
