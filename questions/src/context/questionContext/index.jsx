@@ -4,12 +4,21 @@ const ContextProvider = createContext({});
 
 export const QuestionsContext = ({ children }) => {
   const [choices, setChoices] = useState([]);
+  const [questionType, setQuestionType] = useState(0);
+  const [enunciate, setEnunciate] = useState("");
+  const [image, setImage] = useState(undefined);
 
   return (
     <ContextProvider.Provider
       value={{
         choices,
         setChoices,
+        questionType,
+        setQuestionType,
+        enunciate,
+        setEnunciate,
+        image,
+        setImage,
       }}
     >
       {children}
@@ -19,10 +28,25 @@ export const QuestionsContext = ({ children }) => {
 export default function useQuestionContext() {
   const context = useContext(ContextProvider);
 
-  const { choices, setChoices } = context;
+  const {
+    choices,
+    setChoices,
+    questionType,
+    setQuestionType,
+    enunciate,
+    setEnunciate,
+    image,
+    setImage,
+  } = context;
 
   return {
     choices,
     setChoices,
+    questionType,
+    setQuestionType,
+    enunciate,
+    setEnunciate,
+    image,
+    setImage,
   };
 }

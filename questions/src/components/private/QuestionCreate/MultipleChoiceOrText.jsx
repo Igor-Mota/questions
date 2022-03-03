@@ -16,26 +16,43 @@ const MultipleChoice = function () {
     <>
       {choices.map((el, index) => {
         return (
-          <div className="form-check" key={index}>
-            <input
-              className="form-check-input"
-              type="radio"
-              name="gridRadios"
-              value="option2"
-            />
-            <label className="form-check-label">
+          <div className="form-check option-wraper" key={index}>
+            <div>
               <input
-                type="text"
-                value={el.choice}
-                onChange={(e) => {
-                  var tmp = choices;
-                  el.choice = e.target.value;
+                className="form-check-input"
+                type="radio"
+                name="gridRadios"
+                value="option2"
+                onClick={() => {
+                  var tmp = [...choices];
+                  tmp.forEach((el) => {
+                    el.correct = false;
+                  });
+                  tmp[index].correct = true;
                   setChoices(tmp);
-                  forceUpdate();
                 }}
               />
-            </label>
-            <button onClick={() => handleRemoveChoice(index)}>X</button>
+              <label className="form-check-label">
+                <input
+                  className="form-control input-default  answer"
+                  placeholder="resposta"
+                  type="text"
+                  value={el.choice}
+                  onChange={(e) => {
+                    var tmp = choices;
+                    el.choice = e.target.value;
+                    setChoices(tmp);
+                    forceUpdate();
+                  }}
+                />
+              </label>
+            </div>
+            <button
+              onClick={() => handleRemoveChoice(index)}
+              className="remove-option"
+            >
+              X
+            </button>
           </div>
         );
       })}

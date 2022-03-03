@@ -7,8 +7,8 @@ import useQuestionContext from "../../../context/questionContext";
 const { MultipleChoice, PlaintText } = TypeQuestions;
 
 const QuestionCreate = function () {
-  const [questionType, setQuestionType] = useState(0);
-  const { choices, setChoices } = useQuestionContext();
+  const { setChoices, questionType, setQuestionType, setEnunciate, setImage } =
+    useQuestionContext();
 
   const handleAddChoice = () => {
     setChoices((current) => [...current, { choice: "", correct: false }]);
@@ -23,6 +23,7 @@ const QuestionCreate = function () {
         <div className="create-question-header">
           <div className="question-text">
             <textarea
+              onChange={setEnunciate}
               className="form-control"
               cols="50"
               id="comment"
@@ -37,6 +38,7 @@ const QuestionCreate = function () {
               <FaFileImage size={24} color="gray" />
             </button>
             <input
+              onChange={setImage}
               type="file"
               name="image-user"
               id="image-user"
@@ -48,10 +50,22 @@ const QuestionCreate = function () {
             <div className="nice-select  form-control wide" tabIndex={0}>
               <span className="current">mutipla escolha</span>
               <ul className="list">
-                <li data-value="Option 1" className="option selected focus">
+                <li
+                  data-value="Option 1"
+                  className="option selected focus"
+                  onClick={() => {
+                    setQuestionType(0);
+                  }}
+                >
                   mutipla escolha
                 </li>
-                <li data-value="Option 2" className="option">
+                <li
+                  data-value="Option 2"
+                  className="option"
+                  onClick={() => {
+                    setQuestionType(1);
+                  }}
+                >
                   texto
                 </li>
               </ul>
@@ -60,10 +74,20 @@ const QuestionCreate = function () {
         </div>
         <div className="create-question-content">
           {questionType === 0 ? <MultipleChoice /> : <PlaintText />}
+          <button
+            onClick={handleAddChoice}
+            className="btn btn-primary"
+            style={
+              questionType === 0
+                ? { display: "block", float: "right" }
+                : { display: "none", float: "right" }
+            }
+          >
+            adicionar
+          </button>
         </div>
         <div className="create-question-footer"></div>
       </div>
-      <button onClick={handleAddChoice}>adicionar</button>
     </div>
   );
 };
