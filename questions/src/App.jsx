@@ -1,14 +1,15 @@
-import Layout from './layout'
-import Routes from './routes/routes'
+import Layout from "./layout";
+import Routes from "./routes/routes";
+import { AuthContext } from "./context/auth";
 
 function App() {
   return (
-    <Layout>
-      <Routes.AppRoutes />
-    </Layout>
-  )
+    <AuthContext>
+
+        <Routes.AppRoutes />
+  
+    </AuthContext>
+  );
 }
 
-export default App
-
-
+export default App;

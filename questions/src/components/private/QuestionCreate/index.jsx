@@ -1,4 +1,6 @@
-import { useState, useRef, memo } from "react";
+import { useState, useRef } from "react";
+import { useParams } from "react-router-dom";
+import api from "../../../services/api";
 import TypeQuestions from "./MultipleChoiceOrText";
 import { FaFileImage } from "react-icons/fa";
 import "./styles.css";
@@ -6,12 +8,34 @@ import useQuestionContext from "../../../context/questionContext";
 
 const { MultipleChoice, PlaintText } = TypeQuestions;
 
+
 const QuestionCreate = function () {
-  const { setChoices, questionType, setQuestionType, setEnunciate, setImage } =
+  const params = useParams()
+  const[description, setDescription] = useState('')
+  const [responseAnswer, setResponseAnswer] = useState('')
+
+  const { setChoices, questionType, setQuestionType, setEnunciate, setImage, enunciate, choices, setCorrect,correct } =
     useQuestionContext();
 
   const handleAddChoice = () => {
     setChoices((current) => [...current, { choice: "", correct: false }]);
+  };
+
+const handleCreate = async () => {
+  const data = {
+    title: enunciate,
+    responses:choices,
+    description:description,
+    reponse_type:'multiple_choice',
+    response_answer:correct,
+    answer_type:'multiple_choice',
+    contest_id:params.contestId
+  }
+
+  console.log(data)
+  const response = await   api.post('question/create',data)
+
+    console.table(response)
   };
 
   const inputFileRef = useRef(null);
@@ -86,6 +110,9 @@ const QuestionCreate = function () {
             }
           >
             adicionar
+          </button>
+          <button onClick={handleCreate} className="btn btn-primary">
+            Criar
           </button>
         </div>
         <div className="create-question-footer"></div>

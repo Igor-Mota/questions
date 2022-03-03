@@ -2,7 +2,7 @@ import { useState, useCallback, memo } from "react";
 import useQuestionContext from "../../../context/questionContext";
 
 const MultipleChoice = function () {
-  const { choices, setChoices } = useQuestionContext();
+  const { choices, setChoices, setCorrect } = useQuestionContext();
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
 
@@ -29,6 +29,7 @@ const MultipleChoice = function () {
                     el.correct = false;
                   });
                   tmp[index].correct = true;
+                  setCorrect(tmp.choice)
                   setChoices(tmp);
                 }}
               />

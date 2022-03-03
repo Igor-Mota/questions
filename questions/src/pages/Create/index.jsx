@@ -6,8 +6,8 @@ const Create = function () {
   return (
     <QuestionsContext>
       <div className="row">
-        <TitleCreate />
         <QuestionCreate />
+
       </div>
     </QuestionsContext>
   );

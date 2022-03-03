@@ -6,6 +6,7 @@ export const QuestionsContext = ({ children }) => {
   const [choices, setChoices] = useState([]);
   const [questionType, setQuestionType] = useState(0);
   const [enunciate, setEnunciate] = useState("");
+  const [correct, setCorrect] = useState('')
   const [image, setImage] = useState(undefined);
 
   return (
@@ -17,6 +18,8 @@ export const QuestionsContext = ({ children }) => {
         setQuestionType,
         enunciate,
         setEnunciate,
+        correct,
+        setCorrect,
         image,
         setImage,
       }}
@@ -37,6 +40,8 @@ export default function useQuestionContext() {
     setEnunciate,
     image,
     setImage,
+    correct,
+    setCorrect,
   } = context;
 
   return {
@@ -47,6 +52,8 @@ export default function useQuestionContext() {
     enunciate,
     setEnunciate,
     image,
+    correct,
+    setCorrect,
     setImage,
   };
 }

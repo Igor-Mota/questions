@@ -10,7 +10,7 @@ const Nav = function () {
           <div className="collapse navbar-collapse justify-content-between">
             <div className="header-left">
               <div className="dashboard_bar">
-                Calendar
+                Concurso
               </div>
               <div className="nav-item d-flex align-items-center">
                 <div className="input-group search-area">
